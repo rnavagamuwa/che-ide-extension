@@ -25,16 +25,15 @@ import static org.eclipse.che.ide.api.action.IdeActions.GROUP_MAIN_MENU;
 public class MyExtension {
 
     @Inject
-    public MyExtension(MyResources resources, ActionManager actionManager, MyAction MyAction) {
+    public MyExtension(MyResources resources, ActionManager actionManager, MyAction action) {
 
         DefaultActionGroup mainMenu = (DefaultActionGroup) actionManager.getAction(GROUP_MAIN_MENU);
+        DefaultActionGroup myMenu = new DefaultActionGroup("My Menu", true, actionManager);
+        mainMenu.add(myMenu, Constraints.LAST);
 
-        DefaultActionGroup MyMenu = new DefaultActionGroup("My Menu", true, actionManager);
-        actionManager.registerAction("MyMenuID", MyMenu);
-        mainMenu.add(MyMenu, Constraints.LAST);
-
-        actionManager.registerAction("MyActionID", MyAction);
-        MyMenu.add(MyAction);
+        actionManager.registerAction("MyMenuID", myMenu);
+        actionManager.registerAction("MyActionID", action);
+        myMenu.add(action);
 
     }
 }
