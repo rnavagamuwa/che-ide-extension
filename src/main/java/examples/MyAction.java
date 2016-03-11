@@ -28,6 +28,6 @@ private NotificationManager notificationManager;
 
     @Override
     public void actionPerformed(ActionEvent e) {
-            notificationManager.notify("It's My action !");
+            notificationManager.notify("Hello World !");
     }
 }
